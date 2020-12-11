@@ -21,9 +21,7 @@ router.post('/cadastrar/:fkEmpresa', function (req, res, next) {
 
 router.post('/pegar_motoristas/:idEmpresa', function (req, res, next) {
 	var idEmpresa = req.params.idEmpresa;
-	let instrucaoSql = `	select distinct(cpfMotorista), nomeMotorista from [dbo].[Viagem] right join [dbo].[Motorista] on fkMotoristaViagem = cpfMotorista
-    join [dbo].[Empresa] on fkEmpresa = ${idEmpresa}
-	where fkEmpresa = 1008 and statusViagem is null`;
+	let instrucaoSql = `select * from motorista where fkEmpresa =${idEmpresa}`;
 	sequelize.query(instrucaoSql, {
 		model: Motorista
 	}).then(resultado => {

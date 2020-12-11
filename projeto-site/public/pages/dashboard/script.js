@@ -366,9 +366,8 @@ function cadastrarVeiculo() {
     }).then(function (response) {
         if (response.ok) {
             finalizarAguardarVeiculo();
-            initialFunctions();
             buscarIdVeiculo();
-            limparCamposVeiculo();
+            initialFunctions();
         } else {
             finalizarAguardarVeiculo();
             falhaMsg("veiculo");
@@ -467,6 +466,7 @@ function buscarIdVeiculo() {
             });
         }
     });
+    limparCamposVeiculo();
 }
 function insercaoSensor(idVeiculo) {
     Swal.fire({
