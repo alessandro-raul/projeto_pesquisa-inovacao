@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,600;0,700;0,800;1,300&family=Roboto:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="shortcut icon" href="img/logoTecx.png" />
+    <script src="script.js"></script>
+    <title>TecX</title>
+</head>
+
+<body>
+    <section class="background">
+        <section class="card-section" id="login">
+            <section class="information-side">
+                <div class="container">
+                    <img src="img/truck.png" alt="">
+                    <p class="welcome_msg">Bem vindo ao <span>T</span>ec<span>X</span></p>
+                    <p>O seu software de monitoramento ideal</p>
+                </div>
+            </section>
+            <!-- CAMPOS DE LOGIN -->
+            <section class="form-side">
+                <div class="logo-tecx">
+                    <h1>Login</h1>
+                    <img src="img/logoTecx.png" alt="" style="display: block;">
+                </div>
+                <form class="container" onsubmit="return verificarLogin()" id="form_login">
+                    <input type="email" name="login" id="email" onkeyup="valida_email()" placeholder="Email" required>
+                    <p id="msg"></p>
+                    <input type="password" name="senha" id="senha" onkeyup="valida_senha()" placeholder="Senha" required
+                        autocomplete="current-password">
+                    <p id="mens"></p>
+                    <p style="display: none;">Esqueceu sua senha?</p>
+                    <div class="form-buttons" id="btn_login">
+                        <a onclick="changeToRegister()">
+                            <p>Não possui cadastro?</p>
+                        </a>
+                        <button type="submit">Login</button>
+                    </div>
+                    <div class="form-buttons" id="loading">
+                        <a onclick="changeToRegister()">
+                            <p style="visibility: hidden;">Não possui cadastro?</p>
+                        </a>
+                        <img src="img/loader.gif" style="width: 100px;" alt="">
+                    </div>
+                </form>
+            </section>
+        </section>
+        <!-- FIM CAMPOS DE LOGIN -->
+        <section class="card-section " id="register">
+            <section class="information-side">
+                <div class="container">
+                    <img src="img/cadastro.png" alt="">
+                    <p class="welcome_msg ">Bem vindo ao <span>T</span>ec<span>X</span></p>
+                    <p>O seu software de monitoramento ideal</p>
+                </div>
+            </section>
+            <!-- CAMPOS DE CADASTRO -->
+            <section class="form-side">
+                <div class="logo-tecx">
+                    <h1>Cadastro</h1>
+                    <img src="img/logoTecx.png " alt="" style="display: block;">
+                </div>
+                <form id="form_cadastro" onsubmit="return cadastrarEmpresa()">
+                    <div class="container" id="container_step1">
+                        <div class="div_msg">
+                            <p>Preencha os campos abaixo para prosseguir</p>
+                        </div>
+                        <input type="text" id="nome" name="nome" onkeyup="validar_empresa()"
+                            placeholder="Nome Empresa (Mínimo 1 caracteres)" required minlength="5">
+                        <input type="text" id="cnpjEmpresa" name="cnpjEmpresa" onkeyup="validar_cnpj()"
+                            class="cnpjInput" placeholder="CNPJ (14 caracteres)" required minlength="14" maxlength="14">
+                        <input type="text" id="telefoneEmpresa1" name="telefoneEmpresa1" onkeyup="validar_telefone()"
+                            class="telefoneInput" placeholder="Telefone (10 caracteres)" required minlength="10"
+                            maxlength="11">
+                        <input type="text" id="ruaEmpresa" name="ruaEmpresa" onkeyup="validar_rua()" class="ruaInput"
+                            placeholder="Rua (Mínimo 7 caracteres)" required minlength="5">
+                        <input type="text" id="numEmpresa" name="numEmpresa" onkeyup="validar_numero()" class="numInput"
+                            placeholder="N°" required>
+                        <input type="text" id="bairroEmpresa" name="bairroEmpresa" onkeyup="validar_bairro()"
+                            placeholder="Bairro (Mínimo 5 caracteres)" required>
+                        <input type="text" id="cidadeEmpresa" name="cidadeEmpresa" onkeyup="validar_cidade()"
+                            class="cidadeInput" placeholder="Cidade (Mínimo 3 caracteres)" required>
+                        <input type="text" id="cepEmpresa" name="cepEmpresa" onkeyup="validar_cep()" class="cepInput"
+                            placeholder="CEP" required minlength="8" maxlength="8">
+                        <div class="form-buttons">
+                            <a onclick="changeToLogin()">
+                                <p>Já possui cadastro?</p>
+                            </a>
+                            <button onclick="changeSteps(false)" type="submit">Prosseguir</button>
+                        </div>
+                    </div>
+                    <div class="container" id="container_step2" style="display: none">
+                        <div class="div_msg">
+                            <p>Insira e-mail e senha para finalizar seu cadastro</p>
+                        </div>
+                        <input type="email" id="emailEmpresa" name="emailEmpresa" placeholder="Email"
+                            onkeyup="validar_email()" required>
+                        <input type="password" id="senhaEmpresa" name="senhaEmpresa"
+                            placeholder="Senha (Mínimo 8 caracteres)" onkeyup="validar_senha()" required minlength="8">
+                        <input type="password" id="confirmarSenha" placeholder="Confirmar senha (Idem senha)"
+                            onkeyup="validar_confirmarSenha()" required>
+                        <div class="form-buttons">
+                            <a onclick="changeSteps(true)">
+                                <p>Voltar</p>
+                            </a>
+                            <button type="submit">Finalizar</button>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </section>
+    </section>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+</html>

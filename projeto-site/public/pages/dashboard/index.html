@@ -1,0 +1,340 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>TecX: Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="img/logoTecx.png" type="image/x-icon">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300&family=Roboto:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <input type="checkbox" id="check" style="display: none;">
+    <!-- HEADER -->
+    <div class="header">
+        <div class="container">
+            <div class="title-header">
+                <img src="img/icons/user.svg" alt="">
+                <p id="hello_empresa">
+                    Olá...
+                </p>
+            </div>
+            <div class="search">
+                <input type="text" placeholder="Search">
+                <img src="img/icons/search.svg" alt="">
+            </div>
+        </div>
+    </div>
+    <!-- FIM HEADER -->
+    <!-- MENU FECHADO -->
+    <div class="side-menu">
+        <label class="option" for="check">
+            <img src="img/icons/menu.svg" alt="">
+        </label>
+        <a onclick="changeToVehicles()">
+            <div class="option">
+                <img src="img/icons/truck.svg" alt="">
+            </div>
+        </a>
+        <a onclick="changeToProfile()">
+            <div class="option">
+                <img src="img/icons/settings.svg" alt="">
+            </div>
+        </a>
+        <a onclick="realizaLogout()">
+            <div class="option">
+                <img src="img/icons/log-out.svg" alt="">
+            </div>
+        </a>
+    </div>
+    <!-- FIM MENU ABERTO -->
+    <!-- MENU ABERTO -->
+    <div class="side-menu_open">
+        <nav>
+            <label class="option" for="check">
+                <img src="img/icons/menu.svg" alt="">
+                <p>Menu</p>
+            </label>
+            <a onclick="changeToVehicles()">
+                <div class="option">
+                    <img src="img/icons/truck.svg" alt="">
+                    <p>Veículos</p>
+                </div>
+            </a>
+            <a onclick="changeToProfile()">
+                <div class="option">
+                    <img src="img/icons/settings.svg" alt="">
+                    <p>Opções</p>
+                </div>
+            </a>
+            <a onclick="realizaLogout()">
+                <div class="option">
+                    <img src="img/icons/log-out.svg" alt="">
+                    <p>Logout</p>
+                </div>
+            </a>
+        </nav>
+    </div>
+    <!-- FIM MENU ABERTO -->
+    <section class="section_main">
+        <section class="section_container" id="home">
+            <div
+                style="display: flex; flex-direction: row; width: 100%; justify-content: space-around; align-items: center;">
+                <div class="vehicle_informations">
+                    <div class="vehicle_info">
+                        <img src="img/icons/truckGreen.svg" alt="">
+                        <p id="modelo_veiculo">Volvo FH (DOB-4567)</p>
+                    </div>
+                    <div class="vehicle_info">
+                        <img src="img/icons/userGreen.svg" alt="">
+                        <p id="nome_motorista">Pedro Soares</p>
+                        <img class="phone" src="img/icons/phone.svg" alt="">
+                        <p id="telefone_motorista">(11) 94158-8546</p>
+                    </div>
+
+                </div>
+                <div class="btn_fechar_viagem" onclick="finalizarViagem()">
+                    <img src="img/icons/check-circle.svg" alt="">
+                </div>
+            </div>
+            <div class="charts">
+                <div class="chart_div">
+                    <div class="container">
+                        <p>
+                            <span>T</span>emperatura
+                            <span>a</span>tual
+                        </p>
+                        <section>
+                            <div>
+                                <img src="img/icons/tempHumi/thermometer.svg" id="icon_temp_chart">
+                                <label id='atualTemp'>
+                                    <img src="./img/icons/loader.gif" style="width: 70px;" alt="">
+                                </label>
+                            </div>
+                        </section>
+                        <section style="width:80%; height: 80%;">
+                            <canvas id="chart"></canvas>
+                        </section>
+                    </div>
+                </div>
+                <div class="chart_div">
+                    <div class="container">
+                        <p>
+                            <span>U</span>midade
+                            <span>a</span>tual
+                        </p>
+                        <section>
+                            <div>
+                                <img src="img/icons/tempHumi/droplet.svg" id="icon_humi_chart">
+                                <label id='humidity'>
+                                    <label id='atualHumidity'>
+                                        <img src="./img/icons/loader.gif" style="width: 70px;" alt="">
+                                    </label>
+                            </div>
+                        </section>
+                        <section style="width:80%; height:80%;">
+                            <canvas id="chart_humidity"></canvas>
+                        </section>
+                    </div>
+                </div>
+            </div>
+            <div class="charts" id="home_2">
+                <nav>
+                    <p>Temperatura</p>
+                    <p>Umidade</p>
+                    <p>Data</p>
+                </nav>
+                <div class="data_list" id="data_list">
+                </div>
+            </div>
+        </section>
+        <!-- Uma div por semântica = section pegando toda a tela de monitoramento -->
+        <section class="section_container" id="vehicles">
+            <div class="buttons">
+                <div class="buttons_div" style="background-color: #00ACEE;">
+                    <div class="container" style="padding-top: 0; color: rgba(0, 0, 0, 0.8);">
+                        <p> Em Baixa</p>
+                    </div>
+                </div>
+                <div class="buttons_div" style="background-color: #ffd700">
+                    <div class="container" style="padding-top: 0; color: rgba(0, 0, 0, 0.8);">
+                        <p>Em queda</p>
+                    </div>
+                </div>
+                <div class="buttons_div" style="background-color: #27D72D;">
+                    <div class="container" style="padding-top: 0; color: rgba(0, 0, 0, 0.8);">
+                        <p>Estável</p>
+                    </div>
+                </div>
+                <div class="buttons_div" style="background-color: #FF8c00;">
+                    <div class="container" style="padding-top: 0; color: rgba(0, 0, 0, 0.8);">
+                        <p>Em crescente</p>
+                    </div>
+                </div>
+                <div class="buttons_div" style="background-color: #FF1616;">
+                    <div class="container" style="padding-top: 0; color: rgba(0, 0, 0, 0.8);">
+                        <p>Em Alta</p>
+                    </div>
+                </div>
+            </div>
+            <div class="charts" id="container_veiculos">
+                <div id="truck_loading">
+                    <center>
+                        <img src="img/icons/caminhao.gif" style="margin-right: 35px;">
+                        <p>Nada até o momento...</p>
+                    </center>
+                </div>
+            </div>
+        </section>
+        <!-- PÁGINA DE EDITAR PERFIL DAS EMPRESAS -->
+        <section class="section_container" id="profile" style="display: none;">
+            <div class="container">
+                <img src="img/examples/pngwing.com.p" alt="">
+            </div>
+            <div class="container">
+                <div class="container_editProfile">
+                    <img src="img/icons/logo.png" alt="">
+                    <form class="form" onsubmit="return atualizarEmpresa()" id="form_empresa" name="form_empresa">
+                        <div class="align">
+                            <div class="align_text">
+                                <p><span>P</span>erfil</p>
+                                <p>Edite as informações de sua empresa aqui.</p>
+                            </div>
+                            <input type="text" id="nomeEmpresa" name="nomeEmpresa" placeholder="Nome empresa" required
+                                minlength="5">
+                            <input type="text" as="number" id="cnpj" name="cnpj" placeholder="CNPJ" required
+                                minlength="14" maxlength="14">
+                            <input type="text" as="number" id="telefone" name="telefone1" placeholder="Telefone"
+                                required minlength="10" maxlength="11">
+                            <input type="text" id="logradouro" name="logradouro" class="ruaInput" placeholder="Rua"
+                                required minlength="5">
+                            <input type="text" id="numLogradouro" name="numLogradouro" class="numInput" placeholder="N°"
+                                required>
+                            <input type="text" id="bairro" name="bairro" class="bairroInput" placeholder="Bairro"
+                                required>
+                            <input type="text" id="cidade" name="cidade" class="cidadeInput" placeholder="Cidade"
+                                required>
+                            <input type="text" as="number" id="cep" name="cep" class="cepInput" placeholder="CEP"
+                                required minlength="8" maxlength="8">
+                            <div class="btn_div"><button type="submit">Salvar</button></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="cards">
+                <div class="chart_div" onclick="showVehiclesRegister()">
+                    <div class="container">
+                        <img src="img/icons/truck.png" alt="">
+                        <p><span>A</span>dicionar <span>V</span>eículos</p>
+                    </div>
+                </div>
+                <div class="chart_div" onclick="showMotoristaRegister()">
+                    <img src="img/icons/carteira.png" alt="">
+                    <p><span>A</span>dicionar <span>M</span>otoristas</p>
+                </div>
+                <div class="chart_div" onclick="showTravelRegister()">
+                    <img src="img/icons/destino.png" style="margin-top: 25px; width: 80px;" alt="">
+                    <p><span>A</span>dicionar <span>V</span>iagem</p>
+                </div>
+            </div>
+            <div class="registerCard" id="vehiclesRegister" style="display: none;">
+                <div class="registerContainer">
+                    <div class="closeButton" onclick="closeVehiclesRegister()"><img src="img/icons/x.svg" alt=""></div>
+                    <div class="container_row">
+                        <div class="form">
+                            <img src="img/icons/truckGreen.svg" alt="">
+                            <form class="align" onsubmit="return cadastrarVeiculo()" id="cadastro_veiculo"
+                                name="cadastro_veiculo">
+                                <div class="align_text">
+                                    <p><span>V</span>eículos</p>
+                                    <p>Adicione seus veículos aqui</p>
+                                </div>
+                                <input type="text" class="veiculo_input" name="modeloVeiculo" id="modeloVeiculo"
+                                    placeholder="Modelo veículo" required minlength="5">
+                                <input type="text" class="placa_input" name="placaVeiculo" id="placaVeiculo"
+                                    placeholder="Placa" required minlength="7">
+                                <input type="number" class="bau_input" name="tamanhoBau" id="tamanhoBau"
+                                    placeholder="Tamanho baú (m²)" required minlength="1">
+                                <div class="btn_div">
+                                    <button type="submit" id="btn_salvar_veiculo">Salvar</button>
+                                    <img src="./img/icons/loader.gif" id="loading_veiculo"
+                                        style="width: 100px; display: none;" alt="">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="registerCard" id="motoristaRegister" style="display: none;">
+                <div class="registerContainer">
+                    <div class="closeButton" onclick="closeMotoristaRegister()"><img src="img/icons/x.svg" alt=""></div>
+                    <div class="container_row">
+                        <div class="form">
+                            <img src="img/icons/driver.svg" alt="">
+                            <form class="align" onsubmit="return cadastrarMotorista()" name="cadastro_motorista"
+                                id="cadastro_motorista">
+                                <div class="align_text">
+                                    <p><span>M</span>otorista</p>
+                                    <p>Adicione seus motoristas aqui</p>
+                                </div>
+                                <input type="text" name="nomeMotorista" id="nomeMotorista" placeholder="Nome motorista"
+                                    required minlength="5">
+                                <input type="text" name="cpfMotorista" id="cpfMotorista" class="cpf_input"
+                                    placeholder="CPF" required minlength="11" maxlength="11">
+                                <input type="text" name="telefoneMotorista" id="telefoneMotorista" class="empresa_input"
+                                    placeholder="Telefone" required minlength="10">
+                                <input type="text" name="fkEmpresa" id="fkEmpresa" placeholder="Empresa" disabled>
+                                <div class="btn_div">
+                                    <button type="submit" id="btn_salvar_motorista">Salvar</button>
+                                    <img src="./img/icons/loader.gif" id="loading_motorista"
+                                        style="width: 100px; display: none;" alt="">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="registerCard" id="travelRegister" style="display: none;">
+                <div class="registerContainer">
+                    <div class="closeButton" onclick="closeTravelRegister()"><img src="img/icons/x.svg" alt=""></div>
+                    <div class="container_row">
+                        <div class="form">
+                            <img src="img/icons/map.svg" alt="">
+                            <form class="align" onsubmit="return cadastrarViagem()" name="form_viagem">
+                                <div class="align_text">
+                                    <p><span>V</span>iagem</p>
+                                    <p>Adicione suas viagens aqui</p>
+                                </div>
+                                <select class="input_viagem" id="fkVeiculo" name="fkVeiculo" required>
+                                    <option value=""></option>
+                                </select>
+                                <select class="input_viagem" id="fkMotorista" name="fkMotorista" required>
+                                    <option value=""></option>
+                                </select>
+                                <div class="btn_div">
+                                    <button type="submit" id="btn_salvar_viagem">Salvar</button>
+                                    <img src="./img/icons/loader.gif" id="loading_viagem"
+                                        style="width: 100px; display: none;">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- FIM PÁGINA DE EDITAR PERFIL EMPRESAS-->
+        <section class="section_container" id="options" style="display: none;">
+            <div class="container">
+                <p>Opções</p>
+            </div>
+        </section>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+<script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
+<script src="http://www.chartjs.org/samples/latest/utils.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="script.js"></script>
+
+</html>

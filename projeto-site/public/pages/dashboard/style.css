@@ -1,0 +1,794 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+}
+
+span {
+    color: #00b0f0;
+}
+
+canvas {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+button {
+    width: 150px;
+    height: 40px;
+    border-radius: 50px;
+    border: none;
+    outline: none;
+    background-color: #07BEB8;
+    color: white;
+    float: right;
+}
+
+.btn_fechar_viagem {
+    display: flex;
+    width: 80px;
+    height: 80px;
+    border: 0.5px solid rgba(60, 60, 60, 0.2);
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    transition: 0.2s;
+}
+
+.btn_fechar_viagem:hover {
+    border: 0.5px solid rgba(60, 60, 60, 0);
+    background-color: white;
+    box-shadow: 2.5px 2.5px 15px rgba(60, 60, 60, 0.1);
+    transition: 0.2s;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #F4F4F4;
+}
+::-webkit-scrollbar {
+    width: 6px;
+    background: #F4F4F4;
+}
+::-webkit-scrollbar-thumb {
+    background: #dad7d7;
+}
+
+/* COMEÇO HEADER */
+.header {
+    display: flex;
+    width: calc(100% - 75px);
+    height: 75px;
+    top: 0;
+    right: 0;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    background-color: white;
+    border-bottom: 2px solid #07BEB8;
+}
+
+.header .container {
+    display: flex;
+    width: 90%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header .title-header {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+.header .title-header img {
+    margin-right: 6px;
+}
+
+.header .title-header p {
+    margin: 0;
+}
+/* FIM HEADER */
+
+/* COMEÇO SEARCH */
+.search {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.search img {
+    width: 20px;
+    margin-left: 5px;
+}
+
+.search input {
+    width: 250px;
+    height: 35px;
+    border-radius: 30px;
+    border: none;
+    outline: none;
+    padding-left: 15px;
+    background-color: whitesmoke;
+}
+/* FIM SEARCH */
+
+.side-menu {
+    display: flex;
+    width: 75px;
+    height: 100%;
+    background-color: #07BEB8;
+    flex-direction: column;
+    position: fixed;
+    left: 0;
+    top: 0;
+    transition: all 0.2s linear;
+}
+
+.side-menu .option {
+    display: flex;
+    width: 100%;
+    height: 75px;
+    justify-content: center;
+    align-items: center;
+    transition: 0.2s;
+}
+
+.side-menu .option:hover {
+    background-color: #00b0f0;
+    transition: 0.2s;
+}
+
+.side-menu_open {
+    background-color: #07BEB8;
+    height: 100%;
+    position: fixed;
+    z-index: 2;
+    box-shadow: 2.5px 2.5px 15px rgba(60, 60, 60, 0.1);
+    left: -300px;
+    transition: all 0.2s linear;
+}
+
+.side-menu_open .option {
+    display: flex;
+    width: 100%;
+    height: 75px;
+    align-items: center;
+    transition: 0.2s;
+}
+
+.side-menu_open .option img {
+    margin-left: 20px;
+}
+
+.side-menu_open .option:hover {
+    background-color: #00b0f0;
+    transition: 0.2s;
+}
+
+.side-menu_open .option p {
+    margin: 0px 30px 0px 20px;
+    color: white;
+}
+
+#check:checked~.side-menu_open {
+    transform: translateX(300px);
+    transition: all 0.2s linear;
+}
+
+#check:checked~a .option {
+    opacity: 1;
+    margin-top: 0;
+}
+
+.section_main {
+    display: flex;
+    width: calc(100% - 75px);
+    height: calc(100% - 75px);
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    margin-top: 150px;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+.section_main .section_container {
+    display: flex;
+    width: 90%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    animation: fade_in 0.5s;
+}
+
+.section_main .section_container .vehicle_informations{
+    display: flex;
+    width: 87%;
+    justify-content: center;
+    flex-direction: column;
+    margin: 35px 0px 20px 0px ;
+}
+
+.section_main .section_container .vehicle_informations .vehicle_info{
+    display: flex;
+    flex-direction: row;
+    margin: 10px 0px 10px 0px;
+}
+
+.section_main .section_container .vehicle_informations .vehicle_info img{
+    margin-right: 10px;
+}
+
+.section_main .section_container .vehicle_informations .vehicle_info .phone{
+    margin-left: 22px;
+}
+
+.section_main .section_container .vehicle_informations .vehicle_info p{
+    font-size: 18px;
+    font-weight: 400;
+    margin: 0;
+}
+
+.section_main .charts {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.section_main .charts .chart_div {
+    height: max-content;
+    padding: 15px;
+    background-color: white;
+    border: 0.5px solid rgba(60, 60, 60, 0.2);
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.section_main .charts .chart_div:hover {
+    transition: 0.3s;
+    box-shadow: 2px 2px 15px rgba(60, 60, 60, 0.1);
+    border: 0.5px solid rgba(60, 60, 60, 0);
+}
+
+.section_main .charts .chart_div .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.section_main .charts .chart_div .container p {
+    font-size: 22px;
+    text-align: center;
+}
+
+.section_main .charts .chart_div .container section {
+    display: flex;
+    width: 250px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.section_main .charts .chart_div .container section div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.section_main .charts .chart_div .container section label {
+    font-size: 22px;
+    text-align: center;
+}
+
+.section_main .charts .chart_div .container section div img {
+    margin-right: 8px;
+}
+
+/* CSS VEÍCULOS */
+#vehicles {
+    display: block;
+    display: flex;
+    margin-top: 10px;
+}
+
+#vehicles .container {
+    padding-top: 9px;
+}
+
+#vehicles .charts {
+    justify-content: center;
+}
+
+#vehicles .charts .chart_div .container p {
+    margin: 0;
+    font-size: 18px;
+}
+
+#vehicles img {
+    width: 50%;
+    margin: 15px 0px 15px 0px;
+}
+
+#vehicles .data-vehicle {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+#vehicles .data-vehicle img {
+    margin: 9px 4px 9px 0px;
+}
+
+.truck_img {
+    width: 40%;
+}
+
+.icon {
+    width: 25px !important;
+}
+
+#vehicles_alert .chart_div {
+    width: 250px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #EA4545;
+}
+
+#vehicles .chart_div {
+    width: 210px;
+    height: 270px;
+    display: flex;
+    margin: 15px;
+    justify-content: center;
+    border: 0.5px solid rgba(60, 60, 60, 0.2);
+    align-items: center;
+    cursor: pointer;
+}
+
+#vehicles .chart_div:hover {
+    border: 0.5px solid rgba(60, 60, 60, 0);
+}
+
+#home {
+    display: none;
+}
+
+#home .chart_div {
+    width: 45%;
+}
+
+#home_2 .chart_div {
+    width: 20%;
+}
+
+#home_2 {
+    margin-bottom: 40px;
+}
+
+#home_2 nav{
+    width: 97%;
+    height: 50px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    margin-top: 40px;
+    background-color: #07BEB8;
+    border-radius: 5px 5px 0px 0px;
+    color: white;
+    position: relative;
+    box-sizing: border-box;
+    padding-right: 7px;
+}
+
+#home_2 nav p{
+    width: 25%;
+    text-align: center;
+}
+
+#home_2 .data_list{
+    width: 97%;
+    min-height: 250px;
+    max-height: 270px;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    background-color: whitesmoke;
+    border-radius: 0px 0px 5px 5px;
+}
+
+.data_list .item{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    border-bottom: 1px solid rgba(60, 60, 60, 0.2);
+}
+
+.data_list .item p{
+    width: 25%;
+    text-align: center;
+    margin: 8px 0px 8px 0px ;
+}
+
+
+#home_2 nav p{
+    text-align: center;
+}
+
+.buttons {
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
+.buttons_div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 206px;
+    height: 50px;
+    font-size: 16px;
+    font-weight: 400;
+    color: white;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+
+.buttons_div:first-child{
+    border-radius: 5px 0px 0px 5px
+} 
+
+.buttons_div:last-child{
+    border-radius: 0px 5px 5px 0px
+} 
+
+.buttons_div:hover {
+    transition: 0.3s;
+    box-shadow: 2.5px 2.5px 15px rgba(60, 60, 60, 0.1);
+}
+
+.buttons .charts .chart_div {
+    justify-content: space-between;
+}
+
+/* CSS OPÇÕES */
+#profile .chats{
+    justify-content: none;
+}
+
+#profile input, select{
+    width: 30%;
+    height: 45px;
+    box-sizing: border-box;
+    padding-left: 15px;
+    border-radius: 5px;
+    border: 0.5px solid rgba(60, 60, 60, 0.2);
+    outline: none;
+    margin: 5px;
+}
+
+#profile .title{
+    width: 95%;
+}
+
+#profile .container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;  
+}
+
+#profile .align{
+    display: flex;
+    margin-bottom: 19px;
+    width: 95%;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+
+#profile .align_text{
+    width: 93%; 
+    display: flex;
+    justify-content: flex-start; 
+    margin-bottom: 5px; 
+    margin-left: 5px;
+    flex-direction: column;
+}
+
+#profile .align_text p{
+    font-size: 25px; 
+    margin: 0;
+}
+
+#profile .align_text p:last-child{
+    width: 90%;
+    font-size: 15px; 
+    margin: 0; 
+    margin-bottom: 4px;
+}
+
+#profile .align_button{
+    width: 94%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#profile .container .ruaInput{
+    width: 40%
+}
+
+#profile .container .cidadeInput{
+    width: 25%;
+}
+
+#profile .container .cepInput{
+    width: 22.5%;
+}
+
+#profile .container .numInput{
+    width: 10%;
+}
+
+#profile .container .bairroInput{
+    width: 40%;
+}
+
+#profile .container .container_editProfile{
+    display:flex; 
+    flex-direction:row; 
+    justify-content: center; 
+    align-items: center;
+    margin-top: 50px;
+    animation: fade_in 0.5s;
+}
+
+#profile .container .container_editProfile img{
+    width: 400px;
+}
+
+#profile .cards{
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 50px;
+}
+
+#profile .chart_div {
+    width: 25%;
+    max-width: 300px;
+    height: 210px;
+    display: flex;
+    margin: 15px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 0.5px solid rgba(60, 60, 60, 0.2);
+    border-radius: 5px;
+    background-color: white;
+    transition: 0.3s;
+    cursor: pointer;
+    animation: fade_in 0.5s;
+}
+
+#profile .chart_div:hover {
+    transition: 0.3s;
+    border: 0.5px solid rgba(60, 60, 60, 0);
+    box-shadow: 2px 2px 20px rgba(7, 190, 184, 0.8);
+    transform: scale(1.1);
+}
+
+#profile .chart_div:hover {
+    transition: 0.3s;
+    border: 0.5px solid rgba(60, 60, 60, 0);
+    box-shadow: 2px 2px 20px rgba(7, 190, 184, 0.8);
+    transform: scale(1.1);
+}
+
+#profile .chart_div img{
+    width: 150px;
+}
+
+#profile .chart_div p{
+    font-size: 18px;
+}
+
+#profile .registerCard{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 40px;
+    padding-left: 50px;
+    animation: animate-div 0.5s;
+}
+
+#profile .form{
+    display: flex;
+    width: 85%;
+    max-width: 1000px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin-left: -20px;
+}
+
+#profile .closeButton{
+    width: 97%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#profile .container_row{
+    display: flex;
+    justify-content: center;
+}
+
+#profile .container_row img{
+    width: 75px;
+    margin-right: -10px;
+}
+
+#profile .registerContainer{
+    width: 95%;
+    max-width: 1450px;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    margin: 15px;
+    padding: 30px 0px 55px 0px;
+    background-color: white;
+    border: 0.5px solid rgba(60, 60, 60, 0.2);
+    border-radius: 5px;
+}
+
+#profile .btn_div{
+    width: 42.5%; 
+    margin: 5px; 
+    display: flex; 
+    justify-content: flex-end;
+}
+
+#vehiclesRegister .align{
+    margin-left: -40px;
+}
+
+#vehiclesRegister .align_text{
+    width: 90.5%;
+}
+
+#motoristaRegister .align{
+    margin-left: -10px;
+}
+
+#motoristaRegister .veiculo_input{
+    width: 20% !important;
+}
+
+#motoristaRegister .btn_div{
+    width: 62.3% !important;
+}
+
+.closeButton{
+    position: relative;
+    margin-top: 10px;
+}
+
+.closeButton img{
+    width: 35px;
+    transition: 0.2s;
+}
+
+.closeButton img:hover{
+    transform: scale(1.2);
+    transition: 0.2s;
+}
+
+.veiculo_input{
+    width: 56% !important;
+}
+
+.placa_input{
+    width: 16% !important;
+}
+
+.bau_input{
+    width: 16% !important;
+}
+
+.cpf_input{
+    width: 16% !important;
+}
+
+.empresa_input{
+    width: 24% !important;
+}
+
+.input_viagem{
+    width: 46%;
+}
+
+#fkEmpresa{
+    width: 20% !important;
+}
+
+/* MEDIA QUERYS */
+@media (min-width: 1549px){
+    .section_main .charts {
+        width: 99%;
+    }
+}
+
+@media (min-width: 1564px){
+    .section_main .charts {
+        width: 100%;
+    }
+
+    .buttons {
+        width: 85%;
+    }
+}
+
+@keyframes fade_in {
+    from {
+        display: none;
+        opacity: 0;
+    }
+    to {
+        display: block;
+        opacity: 1;
+    }
+}
+
+@keyframes fade_out {
+    from {
+        display: block;
+        opacity: 1;
+    }
+    to {
+        display: none;
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes animate-div {
+    from {
+        opacity: 0;
+        margin-top: -20px;
+    }
+    to {
+        opacity: 1;
+        margin-top: 0px;
+    }
+}
+
+@-webkit-keyframes animate-div-out {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
