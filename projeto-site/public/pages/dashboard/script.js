@@ -1,3 +1,4 @@
+
 var veiculos;
 var todosVeiculos;
 var empresa;
@@ -607,6 +608,8 @@ function obterDadosGraficoPrimeiraVez(idcaminhao) {
                         {
                             yAxisID: 'y-temperatura',
                             label: 'Temperatura',
+                            borderColor: window.chartColors.red,
+                            backgroundColor: window.chartColors.red,
                             fill: false,
                             data: []
                         }
@@ -642,6 +645,8 @@ function obterDadosGraficoPrimeiraVez2(idcaminhao) {
                         {
                             yAxisID: 'y-umidade',
                             label: 'Umidade',
+                            borderColor: window.chartColors.blue,
+                            backgroundColor: window.chartColors.blue,
                             fill: false,
                             data: []
                         }
